@@ -2,17 +2,7 @@ const HeroSection = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
 
-      {/* Background Video */}
-      <video
-        className="hero-video"
-        src="/bgvideo.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/videoposteer.jpg"
-      />
+
 
       <div className="hero-overlay" />
 
@@ -35,7 +25,7 @@ const HeroSection = () => {
               fontSize: "var(--name-size)"
             }}
           >
-            ARYA PRADYUMN GUPTA
+            DEVOPS VLE3 BY 689 697 991
           </h1>
 
           {/* APG CENTER WRAPPER */}
@@ -52,9 +42,9 @@ const HeroSection = () => {
                 // Always 1.6x name
                 fontSize: "calc(var(--name-size) * 2.6)"
               }}
-              data-text="APG"
+              data-text="VLE3"
             >
-              APG
+              VLE3
             </div>
           </div>
 
@@ -71,7 +61,7 @@ const HeroSection = () => {
             fontSize: "clamp(0.8rem, 1.4vw, 1.2rem)"
           }}
         >
-          Musician • Instructor • Performer
+          Practice for DEVOPS
         </p>
       </div>
 

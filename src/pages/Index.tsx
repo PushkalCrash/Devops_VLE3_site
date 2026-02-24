@@ -14,25 +14,6 @@ const Index = () => {
       <section id="home">
         <HeroSection />
       </section>
-      <section id="impact">
-        <ImpactSection />
-      </section>
-      <section id="services">
-        <ServicePreviewSection />
-      </section>
-
-      <section id="releases">
-        <AlbumsSection />
-      </section>
-
-      <section id="gallery">
-        <GallerySection />
-      </section>
-
-
-      <section id="contact">
-        <SocialSection />
-      </section>
     </main>
   );
 };
