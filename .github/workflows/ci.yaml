@@ -20,9 +20,22 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Send Slack Notification
-        if: always()
+      - name: Slack Build Started
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\":\"Build Status: ${{ job.status }} 🚀\"}" \
+          --data '{"text":"🟡 Build Started for main branch..."}' \
+          ${{ secrets.VLE3_WEBHOOK_SLACK }}
+
+      - name: Slack Success
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"✅ Build Successful 🚀"}' \
+          ${{ secrets.VLE3_WEBHOOK_SLACK }}
+
+      - name: Slack Failure
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"❌ Build Failed 🚨"}' \
           ${{ secrets.VLE3_WEBHOOK_SLACK }}
