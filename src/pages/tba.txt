@@ -1,0 +1,15 @@
+<section>
+       <LessonsCurriculum />
+      </section>
+
+      <section>
+        <LessonsFormat />
+      </section>
+
+      <section>
+        <LessonsCTA />
+      </section>
+
+      //import LessonsCurriculum from "@/components/lessons/LessonsCurriculum";
+//import LessonsFormat from "@/components/lessons/LessonsFormat";
+//import LessonsCTA from "@/components/lessons/LessonsCTA";

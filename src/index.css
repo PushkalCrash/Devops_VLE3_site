@@ -1,0 +1,275 @@
+/* ============================================================
+   FONTS
+============================================================ */
+@font-face {
+  font-family: "Lakeshore";
+  src: url("/Lakeshore-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lakeshore";
+  src: url("/Lakeshore-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   THEME VARIABLES (ACCENT DRIVEN)
+============================================================ */
+@layer base {
+  :root {
+    --background: 220 10% 8%;
+    --foreground: 0 0% 96%;
+    --card: 220 8% 12%;
+    --border: 220 6% 22%;
+
+    /* Accent */
+    --accent: 0 85% 55%;
+    --accent-glow: 45 100% 55%;
+
+    --primary: var(--accent);
+    --ring: var(--accent);
+
+    /* Glow (layered, elegant) */
+    --shadow-glow:
+      0 0 6px hsl(var(--accent-glow) / 0.5),
+      0 0 18px hsl(var(--accent-glow) / 0.35),
+      0 0 36px hsl(var(--accent-glow) / 0.25);
+
+    --shadow-card: 0 10px 36px hsl(0 0% 0% / 0.45);
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+============================================================ */
+@layer components {
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-brush {
+    font-family: "Lakeshore", cursive;
+    letter-spacing: -0.02em;
+    line-height: 0.85;
+  }
+
+  .section-title {
+    @apply font-display text-white text-5xl md:text-7xl leading-none;
+  }
+
+  .section-eyebrow {
+    @apply text-primary uppercase tracking-[0.3em] text-sm font-medium mb-4;
+  }
+
+  .card-glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .card-glass:hover {
+    border-color: hsl(var(--accent));
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-accent {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-glow-accent {
+    text-shadow:
+      0 0 6px hsl(var(--accent-glow) / 0.6),
+      0 0 18px hsl(var(--accent-glow) / 0.4),
+      0 0 36px hsl(var(--accent-glow) / 0.25);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(var(--accent-glow))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) contrast(1.1) saturate(1.2);
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(120, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.85)
+  );
+  z-index: 1;
+}
+
+/* ============================================================
+   BLOCK GLITCH (UNCHANGED CORE + MISALIGNMENT)
+============================================================ */
+.apg-glitch {
+  position: relative;
+  display: inline-block;   /* important */
+  color: hsl(var(--accent));
+  will-change: transform;  /* performance */
+  animation:
+    glitch-jitter 2.4s infinite steps(2, end),
+    glitch-spike 6s infinite;
+}
+
+
+.apg-glitch::before,
+.apg-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.apg-glitch::before {
+  color: hsl(var(--accent-glow));
+  animation: glitch-block-1 1.8s infinite steps(2, end);
+}
+
+.apg-glitch::after {
+  color: hsl(var(--accent));
+  opacity: 0.7;
+  animation: glitch-block-2 1.2s infinite steps(2, end);
+}
+
+/* Horizontal slices */
+@keyframes glitch-block-1 {
+  0%   { clip-path: inset(0 0 75% 0); transform: translate(-8px, -3px); }
+  25%  { clip-path: inset(35% 0 30% 0); transform: translate(6px, 2px); }
+  50%  { clip-path: inset(70% 0 5% 0); transform: translate(-5px, -2px); }
+  75%  { clip-path: inset(15% 0 55% 0); transform: translate(4px, 1px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+}
+
+
+@keyframes glitch-block-2 {
+  0%   { clip-path: inset(20% 0 50% 0); transform: translate(4px, 0); }
+  30%  { clip-path: inset(60% 0 10% 0); transform: translate(-3px, 2px); }
+  60%  { clip-path: inset(30% 0 40% 0); transform: translate(2px, -2px); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+}
+
+/* Subtle constant jitter */
+@keyframes glitch-jitter {
+  0%   { transform: translate(0,0) skewX(0deg); }
+  30%  { transform: translate(-2px,1px) skewX(-1deg); }
+  60%  { transform: translate(3px,-2px) skewX(1deg); }
+  100% { transform: translate(0,0) skewX(0deg); }
+}
+
+/* Rare heavy spike */
+@keyframes glitch-spike {
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-10px, 3px); }
+  94% { transform: translate(8px, -2px); }
+  96% { transform: translate(-6px, 2px); }
+}
+
+@keyframes glitch-jitter {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(3px, -2px); }
+  60%  { transform: translate(-3px, 2px); }
+  80%  { transform: translate(2px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+
+/* ============================================================
+   MARQUEE
+============================================================ */
+.marquee-mask {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* ============================================================
+   SCROLLBAR
+============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
